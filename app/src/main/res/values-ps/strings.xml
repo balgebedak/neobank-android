@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">نیو بانک</string>
+    <string name="welcome_message">نیو بانک ته ښه راغلاست</string>
+    <string name="login">ننوتل</string>
+    <string name="register">راجستر</string>
+    <string name="email">برېښنالیک</string>
+    <string name="phone_number">د تلیفون شمېره</string>
+    <string name="password">پټنوم</string>
+    <string name="forgot_password">پټنوم مو هېر شوی؟</string>
+    <string name="submit">سپارل</string>
+    <string name="home">کور</string>
+    <string name="wallet">بټوه</string>
+    <string name="send_money">پیسې لېږل</string>
+    <string name="profile">پروفایل</string>
+    <string name="logout">وتل</string>
+    <string name="language">ژبه</string>
+    <string name="settings">امستنې</string>
+    <string name="kyc_status">د KYC حالت</string>
+    <string name="verified">تایید شوی</string>
+    <string name="pending">په تمه</string>
+    <string name="failed">ناکام</string>
+</resources>

@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">نیو بانک</string>
+    <string name="welcome_message">به نیو بانک خوش آمدید</string>
+    <string name="login">ورود</string>
+    <string name="register">ثبت‌نام</string>
+    <string name="email">ایمیل</string>
+    <string name="phone_number">شماره تلفن</string>
+    <string name="password">رمز عبور</string>
+    <string name="forgot_password">رمز عبور خود را فراموش کرده‌اید؟</string>
+    <string name="submit">ارسال</string>
+    <string name="home">خانه</string>
+    <string name="wallet">کیف پول</string>
+    <string name="send_money">ارسال پول</string>
+    <string name="profile">پروفایل</string>
+    <string name="logout">خروج</string>
+    <string name="language">زبان</string>
+    <string name="settings">تنظیمات</string>
+    <string name="kyc_status">وضعیت KYC</string>
+    <string name="verified">تأیید شده</string>
+    <string name="pending">در انتظار</string>
+    <string name="failed">ناموفق</string>
+</resources>
