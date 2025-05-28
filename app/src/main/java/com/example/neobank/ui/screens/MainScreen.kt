@@ -1,13 +1,12 @@
 package com.example.neobank.ui.screens
 
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.Send
 import androidx.compose.material.icons.filled.AccountBalanceWallet
+import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Send
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -19,63 +18,52 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.navigation.compose.rememberNavController
-import com.example.neobank.R
-import com.example.neobank.ui.navigation.NavGraph
-import com.example.neobank.ui.theme.NeoBankTheme
-
-data class BottomNavItem(val route: String, val label: String, val icon: ImageVector)
+import androidx.navigation.NavHostController
+import com.example.neobank.ui.navigation.AppNavHost
+import com.example.neobank.ui.viewmodel.AuthViewModel
 
 @Composable
-fun MainScreen(modifier: Modifier = Modifier) {
-    val navController = rememberNavController()
-    val items = listOf(
-        BottomNavItem("home", stringResource(R.string.home), Icons.Default.Home),
-        BottomNavItem("wallet", stringResource(R.string.wallet), Icons.Default.AccountBalanceWallet),
-        BottomNavItem("send", stringResource(R.string.send_money), Icons.AutoMirrored.Filled.Send),
-        BottomNavItem("profile", stringResource(R.string.profile), Icons.Default.Person)
-    )
-    var selectedRoute by remember { mutableStateOf("home") }
+fun MainScreen(
+    navController: NavHostController,
+    authViewModel: AuthViewModel
+) {
+    val items = listOf("home", "wallet", "send", "profile")
+    var selectedItem by remember { mutableStateOf(0) }
 
     Scaffold(
         bottomBar = {
             NavigationBar {
-                items.forEach { item ->
+                items.forEachIndexed { index, item ->
+                    val icon = when (item) {
+                        "home" -> Icons.Filled.Home
+                        "wallet" -> Icons.Filled.AccountBalanceWallet
+                        "send" -> Icons.Filled.Send
+                        "profile" -> Icons.Filled.AccountCircle
+                        else -> Icons.Filled.Home
+                    }
+
                     NavigationBarItem(
-                        selected = item.route == selectedRoute,
+                        selected = selectedItem == index,
                         onClick = {
-                            selectedRoute = item.route
-                            navController.navigate(item.route) {
-                                popUpTo(navController.graph.startDestinationId) { saveState = true }
+                            selectedItem = index
+                            navController.navigate(item) {
+                                popUpTo("home") { inclusive = false }
                                 launchSingleTop = true
-                                restoreState = true
                             }
                         },
-                        icon = { Icon(item.icon, contentDescription = item.label) },
-                        label = { Text(item.label) }
+                        label = { Text(item.replaceFirstChar { it.uppercase() }) },
+                        icon = { Icon(icon, contentDescription = null) }
                     )
                 }
             }
         }
-    ) { padding ->
-        Box(
-            modifier = modifier
-                .padding(padding)
-                .fillMaxSize()
-        ) {
-            NavGraph(navController = navController)
-        }
-    }
-}
+    ) { innerPadding ->
+        Box(modifier = Modifier.padding(innerPadding)) {
+            AppNavHost(
+                navController = navController,
+                authViewModel = authViewModel
+            )
 
-@Preview(showBackground = true)
-@Composable
-fun MainScreenPreview() {
-    NeoBankTheme {
-        MainScreen(modifier = Modifier.padding(16.dp)) // ✅ Use static padding for preview
+        }
     }
 }
