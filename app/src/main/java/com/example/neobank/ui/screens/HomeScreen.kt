@@ -6,6 +6,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.tooling.preview.Preview
+import com.example.neobank.ui.theme.NeoBankTheme
 
 @Composable
 fun HomeScreen(modifier: Modifier = Modifier) {
@@ -27,5 +29,13 @@ fun HomeScreen(modifier: Modifier = Modifier) {
             text = "This is your home screen.\nYou'll see your balance and activity here once real data is connected.",
             style = MaterialTheme.typography.bodyMedium
         )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun HomeScreenPreview() {
+    NeoBankTheme {
+        HomeScreen()
     }
 }

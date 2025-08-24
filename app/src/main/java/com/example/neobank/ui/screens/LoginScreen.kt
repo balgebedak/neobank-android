@@ -22,6 +22,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.tooling.preview.Preview
+import com.example.neobank.ui.theme.NeoBankTheme
 
 @Composable
 fun LoginScreen(
@@ -75,5 +77,16 @@ fun LoginScreen(
         TextButton(onClick = onNavigateToRegister) {
             Text("Don't have an account? Register")
         }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun LoginScreenPreview() {
+    NeoBankTheme {
+        LoginScreen(
+            onLoginClick = { _, _ -> },
+            onNavigateToRegister = { }
+        )
     }
 }
