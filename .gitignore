@@ -43,3 +43,4 @@ app/*.properties
 /captures
 *.apk
 *.ap_
+.env
