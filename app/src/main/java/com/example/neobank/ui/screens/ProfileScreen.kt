@@ -13,6 +13,9 @@ import androidx.navigation.NavController
 import com.example.neobank.ui.viewmodel.AuthViewModel
 import com.example.neobank.ui.components.ProfileOptionCard
 import com.example.neobank.ui.screens.PaymentLinkScreen
+import androidx.compose.ui.tooling.preview.Preview
+import com.example.neobank.ui.theme.NeoBankTheme
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
 fun ProfileScreen(
@@ -173,5 +176,16 @@ fun ProfileOptionCard(
             )
             Text(text = title, style = MaterialTheme.typography.bodyLarge)
         }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun ProfileScreenPreview() {
+    NeoBankTheme {
+        ProfileScreen(
+            navController = androidx.navigation.compose.rememberNavController(),
+            authViewModel = viewModel()
+        )
     }
 }
